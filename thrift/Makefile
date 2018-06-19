@@ -1,0 +1,40 @@
+CC=g++
+GCC=gcc
+DEST_LIB=libdbservice.a
+SRC=$(wildcard *.cpp)
+OBJ=$(SRC:.cpp=.o)
+
+INC=-I/usr/local/include -I/usr/local/inc
+LIB=-L/usr/local/lib -lthrift
+
+FLAGS=-Wall -fpermissive -g -march=native -O3 -std=c++11
+RM=-rm -f
+
+
+
+.PHONY: all clean
+
+all: $(DEST_LIB)
+
+-include $(SRC:.cpp=.d)
+
+%.d: %.c
+	$(CC) -MM $(FLAGS) $(INC) $< -o $@
+
+%.o: %.c %.d
+	$(CC) -c $(FLAGS) $(INC) $< -o $@
+
+%.d: %.cpp
+	$(CC) -MM $(FLAGS) $(INC) $< -o $@
+
+%.o: %.cpp %.d
+	$(CC) -c $(FLAGS) $(INC) $< -o $@
+
+$(DEST_LIB): $(OBJ)
+	ar -crs $(DEST_LIB) $^
+	
+clean:
+	$(RM) *.o
+	$(RM) *.d
+	$(RM) $(DEST_LIB)
+
