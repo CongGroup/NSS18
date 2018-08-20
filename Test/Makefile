@@ -8,9 +8,9 @@ OBJ=$(SRC:.cpp=.o)
 COMMON_OBJ=$(filter-out oreTest.o test.o, $(OBJ))
 
 #thrift
-THRIFT_LINK=-lthrift
-THRIFT_LIB=-L/usr/local/lib
-THRIFT_INC=-I/usr/local/inc
+#THRIFT_LINK=-lthrift
+#THRIFT_LIB=-L/usr/local/lib
+#THRIFT_INC=-I/usr/local/inc
 
 #openssl
 OPENSSL_LINK=-lcrypto
@@ -21,9 +21,9 @@ CARAVEL_LIB=-L../Caravel
 CARAVEL_INC=-I../Caravel
 
 #redis3m
-REDIS3M_LINK=-lredis3m 
-REDIS3M_LIB=-L/usr/local
-REDIS3M_INC=-I/usr/local/include
+#REDIS3M_LINK=-lredis3m 
+#REDIS3M_LIB=-L/usr/local
+#REDIS3M_INC=-I/usr/local/include
 
 #fastore
 FASTORE_LINK=-lfastore
